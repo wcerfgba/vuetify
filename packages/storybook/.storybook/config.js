@@ -21,13 +21,20 @@ addDecorator(withVuetify)
 
 // configure(loadStories, module)
 
-const req = require.context('../stories', true, /\.vue$/)
+const reqVue = require.context('../stories', true, /\.vue$/)
+const reqIndex = require.context('../stories', true, /index\.js$/)
 
 function loadStories() {
-  const keys = req.keys()
-  for (let i = 0; i < keys.length; i++) {
-    const filename = keys[i]
-    registerStories(req, filename, storiesOf, {})
+  const keysVue = reqVue.keys()
+  for (let i = 0; i < keysVue.length; i++) {
+    const filename = keysVue[i]
+    registerStories(reqVue, filename, storiesOf, {})
+  }
+
+  const keysIndex = reqIndex.keys()
+  for (let i = 0; i < keysIndex.length; i++) {
+    const filename = keysIndex[i]
+    reqIndex(filename)
   }
 }
 
