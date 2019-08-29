@@ -11,6 +11,7 @@ export default {
       sortAscending: ': Ordenado crescente. Ative para ordenar decrescente.',
       sortNone: ': Não ordenado. Ative para ordenar crescente.',
     },
+    sortBy: 'Sort by',
   },
   dataFooter: {
     itemsPerPageText: 'Itens por página:',

@@ -11,6 +11,7 @@ export default {
       sortAscending: ': Sorted ascending. Activate to sort descending.',
       sortNone: ': Not sorted. Activate to sort ascending.',
     },
+    sortBy: 'Sort by',
   },
   dataFooter: {
     itemsPerPageText: 'Sayfa başına satır:',

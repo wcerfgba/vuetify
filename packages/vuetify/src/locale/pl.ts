@@ -11,6 +11,7 @@ export default {
       sortAscending: ': Sortowanie rosnąco. Kliknij aby zmienić.',
       sortNone: ': Bez sortowania. Kliknij aby posortować rosnąco.',
     },
+    sortBy: 'Sortuj według',
   },
   dataFooter: {
     itemsPerPageText: 'Pozycji na stronie:',
