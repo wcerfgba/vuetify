@@ -175,7 +175,7 @@ export default VTextField.extend({
       // do to the input event not firing
       // https://github.com/vuetifyjs/vuetify/issues/7941
       delete input.data!.on!.input
-      input.data!.on!.change = this.onInput
+      input.elm.addEventListener('change', this.onInput)
 
       return [this.genSelections(), input]
     },
