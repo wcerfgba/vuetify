@@ -1,9 +1,6 @@
 // Styles
 import './VFileInput.sass'
 
-// Extensions
-import VTextField from '../VTextField'
-
 // Components
 import { VChip } from '../VChip'
 
@@ -163,19 +160,38 @@ export default VTextField.extend({
       }, [text]))
     },
     genInput () {
-      const input = VTextField.options.methods.genInput.call(this)
+      const listeners = Object.assign({}, this.$listeners)
+      // delete listeners['change'] // Change should not be bound externally
+
+      const input = this.$createElement('input', {
+        style: {},
+        domProps: {
+        },
+        attrs: {
+          ...this.$attrs,
+          autofocus: this.autofocus,
+          disabled: this.disabled,
+          id: this.computedId,
+          placeholder: this.placeholder,
+          readonly: this.readonly,
+          type: this.type,
+        },
+        on: Object.assign(listeners, {
+          change: this.onInput
+        }),
+        ref: 'input',
+      })
 
       // We should not be setting value
       // programmatically on the input
       // when it is using type="file"
-      delete input.data!.domProps!.value
+      // delete input.data!.domProps!.value
 
       // This solves an issue in Safari where
       // nothing happens when adding a file
       // do to the input event not firing
       // https://github.com/vuetifyjs/vuetify/issues/7941
-      delete input.data!.on!.input
-      input.elm.addEventListener('change', this.onInput)
+      // delete input.data!.on!.input
 
       return [this.genSelections(), input]
     },
@@ -226,6 +242,7 @@ export default VTextField.extend({
       }, children)
     },
     onInput (e: Event) {
+      console.log("FILEVENT!!!", e)
       const files = [...(e.target as HTMLInputElement).files || []]
 
       this.internalValue = this.isMultiple ? files : files[0]
