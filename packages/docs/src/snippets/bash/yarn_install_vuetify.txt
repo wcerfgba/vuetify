@@ -1,2 +1,0 @@
-$ vue add vuetify
-$ vue invoke vuetify
